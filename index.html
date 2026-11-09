@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodePlus - Online Grocery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOGIN PAGE -->
+    <section class="login-page" id="loginPage">
+        <div class="login-brand">
+            <div class="brand-icon">🛒</div>
+            <h1>CodePlus</h1>
+            <p>Fresh Groceries, Easy Shopping</p>
+        </div>
+
+        <div class="login-card">
+            <h2 id="authTitle">Welcome Back!</h2>
+            <p id="authDescription">Login to continue shopping.</p>
+
+            <form id="loginForm">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label>
+                <div class="password-box">
+                    <input type="password" id="password" placeholder="Enter password" required>
+                    <button type="button" id="togglePassword" aria-label="Show password">
+                        <span id="eyeIcon">👁</span>
+                    </button>
+                </div>
+
+                <button type="submit" id="authSubmitBtn">Login</button>
+            </form>
+
+            <p class="register-text">
+                <span id="authSwitchText">New to CodePlus?</span>
+                <a href="#" id="showRegister">Create Account</a>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- MAIN APPLICATION -->
+    <section class="main-page hidden" id="homePage">
+
+        <!-- HEADER -->
+        <header class="main-header">
+            <div class="brand">
+                <span>🛒</span>
+                <div>
+                    <h2>CodePlus</h2>
+                    <small>Freshness Delivered Simply</small>
+                </div>
+            </div>
+
+            <div class="header-search">
+                <input type="text" id="searchInput" placeholder="Search groceries...">
+                <button type="button" id="searchBtn">🔍</button>
+            </div>
+
+            <div class="user-actions">
+                <button type="button" class="nav-btn active" data-page="home">Home</button>
+                <button type="button" class="nav-btn" data-page="products">Products</button>
+                <button type="button" class="nav-btn" data-page="cart">
+                    🛒 Cart <span id="cartCount">0</span>
+                </button>
+                <button type="button" class="nav-btn" data-page="orders">My Orders</button>
+                <span id="welcomeUser">Welcome, User</span>
+                <button id="logoutBtn" type="button">Logout</button>
+            </div>
+        </header>
+
+
+        <!-- HOME PAGE -->
+        <main id="homeView" class="page-view">
+
+            <section class="festival-banner">
+                <div class="festival-content">
+                    <span class="offer-label">WELCOME TO CODEPLUS</span>
+                    <h1>Fresh Choices.<br>Happy Shopping.</h1>
+                    <p>Everything you need for your kitchen, all in one place.</p>
+                    <button type="button" id="shopNowBtn">Shop Now →</button>
+                </div>
+                <div class="festival-image">
+                    🥦 🍎 🥛 🥕<br>
+                    🍚 🥬 🍌 🥚
+                </div>
+            </section>
+
+            <section class="dashboard">
+                <div class="dashboard-card">
+                    <span>🛍️</span>
+                    <div><h3 id="totalCount">0</h3><p>Products</p></div>
+                </div>
+                <div class="dashboard-card">
+                    <span>🛒</span>
+                    <div><h3 id="pendingCount">0</h3><p>Cart Items</p></div>
+                </div>
+                <div class="dashboard-card">
+                    <span>📦</span>
+                    <div><h3 id="purchasedCount">0</h3><p>Orders</p></div>
+                </div>
+                <div class="dashboard-card">
+                    <span>⭐</span>
+                    <div><h3 id="frequentCount">0</h3><p>Favourites</p></div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Shop by Category</h2>
+                        <p>Choose your favourite grocery category.</p>
+                    </div>
+                </div>
+
+                <div class="category-grid">
+                    <button class="category-card" data-category="Grains">
+                        <span>🍚</span><p>Grains</p>
+                    </button>
+                    <button class="category-card" data-category="Vegetables">
+                        <span>🥦</span><p>Vegetables</p>
+                    </button>
+                    <button class="category-card" data-category="Fruits">
+                        <span>🍎</span><p>Fruits</p>
+                    </button>
+                    <button class="category-card" data-category="Dairy">
+                        <span>🥛</span><p>Dairy</p>
+                    </button>
+                    <button class="category-card" data-category="Snacks">
+                        <span>🍪</span><p>Snacks</p>
+                    </button>
+                    <button class="category-card" data-category="Other">
+                        <span>🛍️</span><p>Others</p>
+                    </button>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Popular Products</h2>
+                        <p>Explore groceries available in our store.</p>
+                    </div>
+                    <button type="button" class="primary-btn" data-page="products">
+                        View All
+                    </button>
+                </div>
+                <div class="product-grid" id="homeProducts"></div>
+            </section>
+        </main>
+
+
+        <!-- PRODUCTS PAGE -->
+        <main id="productsView" class="page-view hidden">
+            <section class="content-section">
+                <div class="section-heading">
+                    <div>
+                        <h1>All Grocery Products</h1>
+                        <p>Select products and add them to your cart.</p>
+                    </div>
+                </div>
+
+                <nav class="category-nav">
+                    <button class="category-btn active" data-category="All">All Items</button>
+                    <button class="category-btn" data-category="Grains">Grains</button>
+                    <button class="category-btn" data-category="Vegetables">Vegetables</button>
+                    <button class="category-btn" data-category="Fruits">Fruits</button>
+                    <button class="category-btn" data-category="Dairy">Dairy</button>
+                    <button class="category-btn" data-category="Snacks">Snacks</button>
+                    <button class="category-btn" data-category="Other">Others</button>
+                </nav>
+
+                <div class="product-grid" id="productGrid"></div>
+                <p id="noProductsMessage" class="empty-message hidden">
+                    No products found.
+                </p>
+            </section>
+        </main>
+
+
+        <!-- CART PAGE -->
+        <main id="cartView" class="page-view hidden">
+            <section class="content-section">
+                <div class="section-heading">
+                    <div>
+                        <h1>My Shopping Cart 🛒</h1>
+                        <p>Review your selected grocery items.</p>
+                    </div>
+                </div>
+
+                <div id="cartItems" class="cart-items">
+                    <p class="empty-message">Your cart is empty. Start shopping!</p>
+                </div>
+
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    <p>Subtotal: <span id="cartSubtotal">₹0.00</span></p>
+                    <p>Delivery: <span id="deliveryCharge">₹0.00</span></p>
+                    <h2>Total: <span id="cartTotal">₹0.00</span></h2>
+                    <button type="button" id="checkoutBtn" class="primary-btn">
+                        Proceed to Checkout
+                    </button>
+                    <button type="button" id="continueShoppingBtn">
+                        Continue Shopping
+                    </button>
+                </div>
+            </section>
+        </main>
+
+
+        <!-- CHECKOUT PAGE -->
+        <main id="checkoutView" class="page-view hidden">
+            <section class="content-section">
+                <h1>Checkout</h1>
+                <p>Enter your delivery details to place your order.</p>
+
+                <form id="checkoutForm" class="checkout-form">
+                    <label for="customerName">Full Name</label>
+                    <input type="text" id="customerName" placeholder="Enter full name" required>
+
+                    <label for="phoneNumber">Mobile Number</label>
+                    <input type="tel" id="phoneNumber" placeholder="10-digit mobile number"
+                           pattern="[0-9]{10}" required>
+
+                    <label for="deliveryAddress">Delivery Address</label>
+                    <textarea id="deliveryAddress" rows="4"
+                              placeholder="House number, street, city, PIN code"
+                              required></textarea>
+
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod" required>
+                        <option value="COD">Cash on Delivery</option>
+                        <option value="Demo">Demo Payment</option>
+                    </select>
+
+                    <div class="checkout-summary">
+                        <h3>Order Total: <span id="checkoutTotal">₹0.00</span></h3>
+                    </div>
+
+                    <button type="submit" class="primary-btn" id="placeOrderBtn">
+                        Place Order
+                    </button>
+                    <button type="button" id="backToCartBtn">
+                        Back to Cart
+                    </button>
+                </form>
+            </section>
+        </main>
+
+
+        <!-- MY ORDERS PAGE -->
+        <main id="ordersView" class="page-view hidden">
+            <section class="content-section">
+                <h1>My Orders 📦</h1>
+                <p>Track your previous grocery orders.</p>
+                <div id="ordersList" class="orders-list">
+                    <p class="empty-message">You haven't placed any orders yet.</p>
+                </div>
+            </section>
+        </main>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <h2>🛒 CodePlus</h2>
+            <p>Fresh Groceries. Smart Shopping.</p>
+            <p>© 2026 CodePlus Team. All Rights Reserved.</p>
+        </footer>
+
+    </section>
+
+    <div id="toast" class="toast hidden" role="status"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
